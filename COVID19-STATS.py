@@ -5,7 +5,8 @@ import time
 from bs4 import BeautifulSoup
 
 main = Tk()
-main.title("SG COVID-19 Statistics")
+main.title("COVID-19")
+main.iconbitmap("python.ico")
 main.geometry("+25+80")
 
 titleFont = font.Font(family="times", size=15, weight="bold")
@@ -22,12 +23,8 @@ def getData():
 	intdata = []
 	DORSCON_color = ""
 
-	##CONFIRMED CASES
-	for tag in soup.select('div > table > tbody > tr > td > p > font > span > b'):
-	    temptags.append(tag)
-
 	##SUSPECTED CASES
-	for tag in (soup.select('div > table > tbody > tr > td > p > font > b'))[1:]:
+	for tag in ((soup.select('div > table > tbody > tr > td > p > font > b'))[:1] + (soup.select('div > table > tbody > tr > td > p > font > b'))[2:]):
 	    temptags.append(tag)
 
 	##DISCHARGED NUMBER
