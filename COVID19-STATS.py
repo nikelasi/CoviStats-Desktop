@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 
 main = Tk()
 main.title("COVID-19")
-main.iconbitmap("python.ico")
 main.geometry("+25+80")
 
 titleFont = font.Font(family="times", size=15, weight="bold")
