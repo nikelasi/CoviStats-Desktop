@@ -22,12 +22,12 @@ def getData():
 	intdata = []
 	DORSCON_color = ""
 
-	##SUSPECTED CASES
-	for tag in ((soup.select('div > table > tbody > tr > td > p > font > b'))[:1] + (soup.select('div > table > tbody > tr > td > p > font > b'))[2:]):
+	##HOSPITALISED
+	for tag in soup.select('div > div > table > tbody > tr > td > p > span > strong'):
 	    temptags.append(tag)
 
-	##DISCHARGED NUMBER
-	for tag in soup.select('div > table > tbody > tr > td > p > span > strong > span'):
+	##DISCHARGED - TOTAL CONFIRMED
+	for tag in soup.select('tr > td > p > font > b'):
 	    temptags.append(tag)
 
 	##Integer Stats
@@ -56,11 +56,11 @@ def getData():
 	if DORSCON_color == "":
 	    DORSCON_color = "#D5D8D7"
 
-	infectedInt.config(text=intdata[0])
+	cfmcasesInt.config(text=intdata[2])
 
-	susInt.config(text=intdata[1])
+	hospitalisedInt.config(text=intdata[0])
 
-	curedInt.config(text=intdata[2])
+	dischargedInt.config(text=intdata[1])
 
 	deadInt.config(text=0)
 
@@ -70,20 +70,20 @@ def getData():
 titleLbl = Label(main, text="SG COVID-19 Statistics", font=titleFont, padx=10, pady=10)
 titleLbl.grid(row=0, column=0, columnspan=3)
 
-infectedLbl = Label(main, text="Confirmed Cases:", font=mainFont, padx=10, pady=5)
-infectedLbl.grid(row=1, column=0, sticky=W)
-infectedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-infectedInt.grid(row=1, column=1, sticky=W)
+cfmcasesLbl = Label(main, text="Confirmed Cases:", font=mainFont, padx=10, pady=5)
+cfmcasesLbl.grid(row=1, column=0, sticky=W)
+cfmcasesInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+cfmcasesInt.grid(row=1, column=1, sticky=W)
 
-susLbl = Label(main, text="Suspected Cases:", font=mainFont, padx=10, pady=5)
-susLbl.grid(row=2, column=0, sticky=W)
-susInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-susInt.grid(row=2, column=1, sticky=W)
+hospitalisedLbl = Label(main, text="Hospitalised:", font=mainFont, padx=10, pady=5)
+hospitalisedLbl.grid(row=2, column=0, sticky=W)
+hospitalisedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+hospitalisedInt.grid(row=2, column=1, sticky=W)
 
-curedLbl = Label(main, text="Discharged:", font=mainFont, padx=10, pady=5)
-curedLbl.grid(row=3, column=0, sticky=W)
-curedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-curedInt.grid(row=3, column=1, sticky=W)
+dischargedLbl = Label(main, text="Discharged:", font=mainFont, padx=10, pady=5)
+dischargedLbl.grid(row=3, column=0, sticky=W)
+dischargedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+dischargedInt.grid(row=3, column=1, sticky=W)
 
 deadLbl = Label(main, text="Deaths:", font=mainFont, padx=10, pady=5)
 deadLbl.grid(row=4, column=0, sticky=W)
