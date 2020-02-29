@@ -23,7 +23,7 @@ def getData():
 	DORSCON_color = ""
 
 	##HOSPITALISED
-	for tag in soup.select('div > div > table > tbody > tr > td > p > span > strong'):
+	for tag in soup.select('tr > td > p > font > span > b'):
 	    temptags.append(tag)
 
 	##DISCHARGED - TOTAL CONFIRMED
