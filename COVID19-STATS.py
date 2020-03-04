@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v1.102"
+version = "v1.103"
 
 latest = version
 
@@ -71,7 +71,7 @@ def getData():
 			critical = intdata[0] - intdata[1]
 			death = intdata[2]
 			discharged = intdata[3]
-			total = intdata[3] + intdata[0]
+			total = intdata[3] + intdata[0] + intdata[2]
 		except:
 			hospitalised = "N/A"
 			stable = "N/A"
