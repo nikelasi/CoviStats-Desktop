@@ -1,18 +1,45 @@
 from tkinter import *
 from tkinter import font
 import requests
-import time
+import webbrowser
 from bs4 import BeautifulSoup
+
+updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
+
+version = "v1.102"
+
+latest = version
 
 main = Tk()
 main.title("COVID-19")
 main.geometry("+25+80")
 
-titleFont = font.Font(family="times", size=15, weight="bold")
-mainFont = font.Font(family="times", size=10)
+titleFont = font.Font(family="times", size=20, weight="bold")
+mainFont = font.Font(family="times", size=12)
+
+def getWeb():
+	global updateURL
+	webbrowser.open_new(updateURL)
 
 def getData():
 
+	global latest
+	global version
+
+	try:
+		result = requests.get("https://github.com/NicholasJohansan/COVID-19-Stats-Program-/blob/master/version.txt")
+		src = result.content
+		soup = BeautifulSoup(src, 'html.parser')
+
+		latest = soup.findAll("td", {"class": "blob-code blob-code-inner js-file-line"})[0].text
+
+		if version == latest:
+			versionLbl.config(text=f"Version: {version}, You are on the latest version!")
+		elif version != latest:
+			updatBtn.config(state="normal")
+			versionLbl.config(text=f"Version: {version}, version {latest} is available. Please update!")
+	except:
+		versionLbl.config(text=f"Version: {version}")
 	try:
 		result = requests.get("https://www.moh.gov.sg/covid-19")
 		src = result.content
@@ -94,7 +121,7 @@ def getData():
 
 
 titleLbl = Label(main, text="SG COVID-19 Statistics", font=titleFont, padx=10, pady=10)
-titleLbl.grid(row=0, column=0, columnspan=3)
+titleLbl.grid(row=0, column=0, columnspan=2)
 
 cfmcasesLbl = Label(main, text="Confirmed Cases:", font=mainFont, padx=10, pady=5)
 cfmcasesLbl.grid(row=1, column=0, sticky=W)
@@ -126,11 +153,17 @@ deathLbl.grid(row=6, column=0, sticky=W)
 deathInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
 deathInt.grid(row=6, column=1, sticky=W)
 
-DORSCONLbl = Label(main, text="DORSCON", font=mainFont, padx=10, pady=5, width=30)
-DORSCONLbl.grid(row=7, column=0, columnspan=3)
+DORSCONLbl = Label(main, text="DORSCON", font=mainFont, padx=10, pady=5, width=45)
+DORSCONLbl.grid(row=7, column=0, columnspan=2)
 
-updateBtn = Button(main, text="Update", font=mainFont, padx=10, pady=5, command=getData, width=30)
-updateBtn.grid(row=8, column=0, columnspan=3)
+updateBtn = Button(main, text="Update Stats", font=mainFont, padx=10, pady=5, command=getData, width=45)
+updateBtn.grid(row=8, column=0, columnspan=2)
+
+versionLbl = Label(main, text=f"Version: {version}, receiving latest version...", font=mainFont, padx=10, pady=5, width=45)
+versionLbl.grid(row=9, column=0, columnspan=2)
+
+updatBtn = Button(main, text="Update App", font=mainFont, padx=10, pady=5, command=getWeb, width=45, state=DISABLED)
+updatBtn.grid(row=10, column=0, columnspan=2)
 
 getData()
 
