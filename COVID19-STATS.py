@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v1.103"
+version = "v1.201"
 
 latest = version
 
