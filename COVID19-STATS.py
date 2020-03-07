@@ -50,13 +50,15 @@ def getData():
 		intdata = []
 		DORSCON_color = ""
 
-		##HOSPITALISED [0] - STABLE [1] - DEATH [2] - critical [0] - [1]
-		for tag in soup.select('tr > td > span > strong > span'):
+		##HOSPITALISED [0] - STABLE [1] - critical [0] - [1]
+		for tag in soup.select('span > strong > font'):
 			temptags.append(tag)
 
+		##DEATH [2]
+		temptags.append(soup.select("strong > span > span")[0])
+
 		##DISCHARGED [3] - total [3] + [0]
-		for tag in soup.select('tr > td > strong > span'):
-			temptags.append(tag)
+		temptags.append(soup.select("td > strong > span")[1])
 
 		##Integer Stats
 		for tag in temptags:
