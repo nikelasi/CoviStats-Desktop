@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.201"
+version = "v2.301"
 
 latest = version
 
@@ -273,7 +273,7 @@ def getLeaderboard():
 		DORSCON_color = ""
 
 		for i in range(2, 7):
-			temptags.append(soup.findAll("div", {"class":"container--wrap col "})[0].findAll("tr")[i])
+			temptags.append(soup.findAll("div", {"class":"container--wrap col"})[0].findAll("tr")[i])
 
 		try:
 			for tag in temptags:
