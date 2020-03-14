@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.101"
+version = "v2.201"
 
 latest = version
 
@@ -20,6 +20,129 @@ main.geometry("+0+40")
 
 titleFont = font.Font(family="times", size=20, weight="bold")
 mainFont = font.Font(family="times", size=12)
+
+class SG_Card:
+
+	def __init__(self):
+		self.cfmcasesLbl = Label(main, text="Confirmed Cases:", font=mainFont, padx=10, pady=5)
+		self.cfmcasesLbl.grid(row=1, column=0, sticky=W)
+		self.cfmcasesInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.cfmcasesInt.grid(row=1, column=1, sticky=W)
+
+		self.dischargedLbl = Label(main, text="Discharged:", font=mainFont, padx=10, pady=5)
+		self.dischargedLbl.grid(row=2, column=0, sticky=W)
+		self.dischargedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.dischargedInt.grid(row=2, column=1, sticky=W)
+
+		self.hospitalisedLbl = Label(main, text="Hospitalised:", font=mainFont, padx=10, pady=5)
+		self.hospitalisedLbl.grid(row=3, column=0, sticky=W)
+		self.hospitalisedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.hospitalisedInt.grid(row=3, column=1, sticky=W)
+
+		self.stableLbl = Label(main, text="Stable Cases:", font=mainFont, padx=10, pady=5)
+		self.stableLbl.grid(row=4, column=0, sticky=W)
+		self.stableInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.stableInt.grid(row=4, column=1, sticky=W)
+
+		self.criticalLbl = Label(main, text="Critical Cases:", font=mainFont, padx=10, pady=5)
+		self.criticalLbl.grid(row=5, column=0, sticky=W)
+		self.criticalInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.criticalInt.grid(row=5, column=1, sticky=W)
+
+		self.deathLbl = Label(main, text="Deaths:", font=mainFont, padx=10, pady=5)
+		self.deathLbl.grid(row=6, column=0, sticky=W)
+		self.deathInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.deathInt.grid(row=6, column=1, sticky=W)
+
+		self.DORSCONLbl = Label(main, text="DORSCON", font=mainFont, padx=10, pady=5, width=45)
+		self.DORSCONLbl.grid(row=7, column=0, columnspan=2)
+
+	def update(self, d1, d2, d3, d4, d5, d6, d7):
+
+		self.cfmcasesInt.config(text=f"{int(d1):,}")
+		self.dischargedInt.config(text=f"{int(d2):,}")
+		self.hospitalisedInt.config(text=f"{int(d3):,}")
+		self.stableInt.config(text=f"{int(d4):,}")
+		self.criticalInt.config(text=f"{int(d5):,}")
+		self.deathInt.config(text=f"{int(d6):,}")
+		self.DORSCONLbl.config(background=d7)
+
+class G_Card:
+
+	def __init__(self):
+
+		self.cfmcasesLbl = Label(globalstats, text="Confirmed Cases:", font=("times", 12), padx=10, pady=5)
+		self.cfmcasesLbl.grid(row=1, column=0, sticky=W)
+		self.cfmcasesInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.cfmcasesInt.grid(row=1, column=1, sticky=W)
+
+		self.dischargedLbl = Label(globalstats, text="Discharged:", font=("times", 12), padx=10, pady=5)
+		self.dischargedLbl.grid(row=2, column=0, sticky=W)
+		self.dischargedInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.dischargedInt.grid(row=2, column=1, sticky=W)
+
+		self.hospitalisedLbl = Label(globalstats, text="Hospitalised:", font=("times", 12), padx=10, pady=5)
+		self.hospitalisedLbl.grid(row=3, column=0, sticky=W)
+		self.hospitalisedInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.hospitalisedInt.grid(row=3, column=1, sticky=W)
+
+		self.stableLbl = Label(globalstats, text="Stable Cases:", font=("times", 12), padx=10, pady=5)
+		self.stableLbl.grid(row=4, column=0, sticky=W)
+		self.stableInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.stableInt.grid(row=4, column=1, sticky=W)
+
+		self.criticalLbl = Label(globalstats, text="Critical Cases:", font=("times", 12), padx=10, pady=5)
+		self.criticalLbl.grid(row=5, column=0, sticky=W)
+		self.criticalInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.criticalInt.grid(row=5, column=1, sticky=W)
+
+		self.deathLbl = Label(globalstats, text="Deaths:", font=("times", 12), padx=10, pady=5)
+		self.deathLbl.grid(row=6, column=0, sticky=W)
+		self.deathInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.deathInt.grid(row=6, column=1, sticky=W)
+
+		self.countriesLbl = Label(globalstats, text="Countries:", font=("times", 12), padx=10, pady=5)
+		self.countriesLbl.grid(row=7, column=0, sticky=W)
+		self.countriesInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
+		self.countriesInt.grid(row=7, column=1, sticky=W)
+
+	def update(self, d1, d2, d3, d4, d5, d6, d7):
+
+		self.cfmcasesInt.config(text=f"{int(d1):,}")
+		self.dischargedInt.config(text=f"{int(d2):,}")
+		self.hospitalisedInt.config(text=f"{int(d3):,}")
+		self.stableInt.config(text=f"{int(d4):,}")
+		self.criticalInt.config(text=f"{int(d5):,}")
+		self.deathInt.config(text=f"{int(d6):,}")
+		self.countriesInt.config(text=f"{d7}/195")
+
+class L_Card:
+
+	def __init__(self, row):
+		self.name = "Country"
+		self.cases = "Cases"
+		self.hospitalised = "Hospitalised"
+		self.discharged = "Discharged"
+		self.deaths = "Deaths"
+
+		self.countryLbl = Label(leaderboard, text=self.name, font=("times", 12), padx=10, pady=5)
+		self.countryLbl.grid(row=row, column=0, sticky=W)
+		self.casesLbl = Label(leaderboard, text=self.cases, font=("times", 12), padx=10, pady=5)
+		self.casesLbl.grid(row=row, column=1, sticky=W)
+		self.hospitalisedLbl = Label(leaderboard, text=self.hospitalised, font=("times", 12), padx=10, pady=5)
+		self.hospitalisedLbl.grid(row=row, column=2, sticky=W)
+		self.dischargedLbl = Label(leaderboard, text=self.discharged, font=("times", 12), padx=10, pady=5)
+		self.dischargedLbl.grid(row=row, column=3, sticky=W)
+		self.deathsLbl = Label(leaderboard, text=self.deaths, font=("times", 12), padx=10, pady=5)
+		self.deathsLbl.grid(row=row, column=4, sticky=W)
+
+	def update(self, index, dataset):
+
+		self.countryLbl.config(text=f"{dataset[index][0]}")
+		self.casesLbl.config(text=f"{int(dataset[index][1]):,}")
+		self.hospitalisedLbl.config(text=f"{int(dataset[index][2]):,}")
+		self.dischargedLbl.config(text=f"{int(dataset[index][3]):,}")
+		self.deathsLbl.config(text=f"{int(dataset[index][4]):,}")
 
 def help_info_popup():
 	messagebox.showinfo("Help/Info", "This Statistics app was made by @NJ889.\n\nIn this app, you can see:\n- SG COVID19 STATS\n- Global COVID19 STATS\n- Top 5 Countries affected by COVID19\n\nIn the case where the stats shown are \"N/A\" or \"0\", it is either that the website source does not exist anymore (possibly due to its irrelevancy in the future) or the source code of the websites has been changed and require new code.\n\nIn this event, you may contact me at \"ncov19.gspread@gmail.com\" to fix the problem or evaluate the issue.\n\n\nNicholas Johansan © 2020")
@@ -64,16 +187,12 @@ def getGlobal():
 
 		##CONFIRMED [0]
 		temptags.append(soup.findAll("p", {"style": "color: rgb(101, 221, 155); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-
 		#DEATHS [1]
 		temptags.append(soup.findAll("p", {"style": "color: #F65164; font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-
 		#SERIOUS [2]
 		temptags.append(soup.findAll("p", {"style": "color: rgb(248, 245, 64); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-
 		#RECOVERED [3]
 		temptags.append(soup.findAll("p", {"style": "color: rgb(68, 155, 226); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-
 		#COUNTRIES [4]
 		temptags.append(soup.findAll("p", {"style": "color: #DFDFEF; font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0].sup)
 
@@ -109,31 +228,13 @@ def getGlobal():
 		hospitalised = "N/A"
 		stable = "N/A"
 
-	g_cfmcasesInt.config(text=f"{confirmed:,}")
-
-	g_dischargedInt.config(text=f"{recovered:,}")
-
-	g_hospitalisedInt.config(text=f"{hospitalised:,}")
-
-	g_stableInt.config(text=f"{stable:,}")
-
-	g_criticalInt.config(text=f"{critical:,}")
-
-	g_deathInt.config(text=f"{death:,}")
-
-	g_countriesInt.config(text=f"{countries}/195")
+	globalCard.update(confirmed, recovered, hospitalised, stable, critical, death, countries)
 
 def globalStats():
 
 	global globalstats_running
 	global globalstats
-	global g_cfmcasesInt
-	global g_deathInt
-	global g_stableInt
-	global g_criticalInt
-	global g_hospitalisedInt
-	global g_dischargedInt
-	global g_countriesInt
+	global globalCard
 
 	if globalstats_running:
 		return
@@ -147,40 +248,7 @@ def globalStats():
 	g_titleLbl = Label(globalstats, text="Global COVID-19 Statistics", font=("times", 20, "bold"), padx=10, pady=10)
 	g_titleLbl.grid(row=0, column=0, columnspan=2)
 
-	g_cfmcasesLbl = Label(globalstats, text="Confirmed Cases:", font=("times", 12), padx=10, pady=5)
-	g_cfmcasesLbl.grid(row=1, column=0, sticky=W)
-	g_cfmcasesInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_cfmcasesInt.grid(row=1, column=1, sticky=W)
-
-	g_dischargedLbl = Label(globalstats, text="Discharged:", font=("times", 12), padx=10, pady=5)
-	g_dischargedLbl.grid(row=2, column=0, sticky=W)
-	g_dischargedInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_dischargedInt.grid(row=2, column=1, sticky=W)
-
-	g_hospitalisedLbl = Label(globalstats, text="Hospitalised:", font=("times", 12), padx=10, pady=5)
-	g_hospitalisedLbl.grid(row=3, column=0, sticky=W)
-	g_hospitalisedInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_hospitalisedInt.grid(row=3, column=1, sticky=W)
-
-	g_stableLbl = Label(globalstats, text="Stable Cases:", font=("times", 12), padx=10, pady=5)
-	g_stableLbl.grid(row=4, column=0, sticky=W)
-	g_stableInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_stableInt.grid(row=4, column=1, sticky=W)
-
-	g_criticalLbl = Label(globalstats, text="Critical Cases:", font=("times", 12), padx=10, pady=5)
-	g_criticalLbl.grid(row=5, column=0, sticky=W)
-	g_criticalInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_criticalInt.grid(row=5, column=1, sticky=W)
-
-	g_deathLbl = Label(globalstats, text="Deaths:", font=("times", 12), padx=10, pady=5)
-	g_deathLbl.grid(row=6, column=0, sticky=W)
-	g_deathInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_deathInt.grid(row=6, column=1, sticky=W)
-
-	g_countriesLbl = Label(globalstats, text="Countries:", font=("times", 12), padx=10, pady=5)
-	g_countriesLbl.grid(row=7, column=0, sticky=W)
-	g_countriesInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-	g_countriesInt.grid(row=7, column=1, sticky=W)
+	globalCard = G_Card()
 
 	g_updateBtn = Button(globalstats, text="Update Stats", font=("times", 12), padx=10, pady=5, command=getGlobal, width=45)
 	g_updateBtn.grid(row=8, column=0, columnspan=2)
@@ -225,71 +293,18 @@ def getLeaderboard():
 		for i in range(0, 5):
 			top5tags.append(["N/A", 0, 0, 0, 0])
 
-	c1_nameLbl.config(text=f"{top5tags[0][0]}")
-	c1_casesLbl.config(text=f"{top5tags[0][1]:,}")
-	c1_hospitalisedLbl.config(text=f"{top5tags[0][2]:,}")
-	c1_dischargedLbl.config(text=f"{top5tags[0][3]:,}")
-	c1_deathsLbl.config(text=f"{top5tags[0][4]:,}")
-
-	c2_nameLbl.config(text=f"{top5tags[1][0]}")
-	c2_casesLbl.config(text=f"{top5tags[1][1]:,}")
-	c2_hospitalisedLbl.config(text=f"{top5tags[1][2]:,}")
-	c2_dischargedLbl.config(text=f"{top5tags[1][3]:,}")
-	c2_deathsLbl.config(text=f"{top5tags[1][4]:,}")
-
-	c3_nameLbl.config(text=f"{top5tags[2][0]}")
-	c3_casesLbl.config(text=f"{top5tags[2][1]:,}")
-	c3_hospitalisedLbl.config(text=f"{top5tags[2][2]:,}")
-	c3_dischargedLbl.config(text=f"{top5tags[2][3]:,}")
-	c3_deathsLbl.config(text=f"{top5tags[2][4]:,}")
-
-	c4_nameLbl.config(text=f"{top5tags[3][0]}")
-	c4_casesLbl.config(text=f"{top5tags[3][1]:,}")
-	c4_hospitalisedLbl.config(text=f"{top5tags[3][2]:,}")
-	c4_dischargedLbl.config(text=f"{top5tags[3][3]:,}")
-	c4_deathsLbl.config(text=f"{top5tags[3][4]:,}")
-
-	c5_nameLbl.config(text=f"{top5tags[4][0]}")
-	c5_casesLbl.config(text=f"{top5tags[4][1]:,}")
-	c5_hospitalisedLbl.config(text=f"{top5tags[4][2]:,}")
-	c5_dischargedLbl.config(text=f"{top5tags[4][3]:,}")
-	c5_deathsLbl.config(text=f"{top5tags[4][4]:,}")
+	c1.update(0, top5tags)
+	c2.update(1, top5tags)
+	c3.update(2, top5tags)
+	c4.update(3, top5tags)
+	c5.update(4, top5tags)
 
 def leaderboardStats():
 
 	global leaderboard_running
 	global leaderboard
 
-	global c1_nameLbl
-	global c1_casesLbl
-	global c1_hospitalisedLbl
-	global c1_dischargedLbl
-	global c1_deathsLbl
-
-	global c2_nameLbl
-	global c2_casesLbl
-	global c2_hospitalisedLbl
-	global c2_dischargedLbl
-	global c2_deathsLbl
-
-	global c3_nameLbl
-	global c3_casesLbl
-	global c3_hospitalisedLbl
-	global c3_dischargedLbl
-	global c3_deathsLbl
-
-	global c4_nameLbl
-	global c4_casesLbl
-	global c4_hospitalisedLbl
-	global c4_dischargedLbl
-	global c4_deathsLbl
-
-	global c5_nameLbl
-	global c5_casesLbl
-	global c5_hospitalisedLbl
-	global c5_dischargedLbl
-	global c5_deathsLbl
-
+	global c1, c2, c3, c4, c5
 	if leaderboard_running:
 		return
 	else:
@@ -302,71 +317,13 @@ def leaderboardStats():
 	l_titleLbl = Label(leaderboard, text="Top 5 Countries with COVID-19", font=("times", 20, "bold"), padx=10, pady=10)
 	l_titleLbl.grid(row=0, column=0, columnspan=5)
 
-	l_countryLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	l_countryLbl.grid(row=1, column=0, sticky=W)
-	l_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	l_casesLbl.grid(row=1, column=1, sticky=W)
-	l_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	l_hospitalisedLbl.grid(row=1, column=2, sticky=W)
-	l_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	l_dischargedLbl.grid(row=1, column=3, sticky=W)
-	l_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	l_deathsLbl.grid(row=1, column=4, sticky=W)
+	l_header = L_Card(1)
 
-	c1_nameLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	c1_nameLbl.grid(row=2, column=0, sticky=W)
-	c1_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	c1_casesLbl.grid(row=2, column=1, sticky=W)
-	c1_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	c1_hospitalisedLbl.grid(row=2, column=2, sticky=W)
-	c1_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	c1_dischargedLbl.grid(row=2, column=3, sticky=W)
-	c1_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	c1_deathsLbl.grid(row=2, column=4, sticky=W)
-
-	c2_nameLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	c2_nameLbl.grid(row=3, column=0, sticky=W)
-	c2_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	c2_casesLbl.grid(row=3, column=1, sticky=W)
-	c2_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	c2_hospitalisedLbl.grid(row=3, column=2, sticky=W)
-	c2_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	c2_dischargedLbl.grid(row=3, column=3, sticky=W)
-	c2_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	c2_deathsLbl.grid(row=3, column=4, sticky=W)
-
-	c3_nameLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	c3_nameLbl.grid(row=4, column=0, sticky=W)
-	c3_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	c3_casesLbl.grid(row=4, column=1, sticky=W)
-	c3_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	c3_hospitalisedLbl.grid(row=4, column=2, sticky=W)
-	c3_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	c3_dischargedLbl.grid(row=4, column=3, sticky=W)
-	c3_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	c3_deathsLbl.grid(row=4, column=4, sticky=W)
-
-	c4_nameLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	c4_nameLbl.grid(row=5, column=0, sticky=W)
-	c4_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	c4_casesLbl.grid(row=5, column=1, sticky=W)
-	c4_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	c4_hospitalisedLbl.grid(row=5, column=2, sticky=W)
-	c4_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	c4_dischargedLbl.grid(row=5, column=3, sticky=W)
-	c4_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	c4_deathsLbl.grid(row=5, column=4, sticky=W)
-
-	c5_nameLbl = Label(leaderboard, text="Country", font=("times", 12), padx=10, pady=5)
-	c5_nameLbl.grid(row=6, column=0, sticky=W)
-	c5_casesLbl = Label(leaderboard, text="Cases", font=("times", 12), padx=10, pady=5)
-	c5_casesLbl.grid(row=6, column=1, sticky=W)
-	c5_hospitalisedLbl = Label(leaderboard, text="Hospitalised", font=("times", 12), padx=10, pady=5)
-	c5_hospitalisedLbl.grid(row=6, column=2, sticky=W)
-	c5_dischargedLbl = Label(leaderboard, text="Discharged", font=("times", 12), padx=10, pady=5)
-	c5_dischargedLbl.grid(row=6, column=3, sticky=W)
-	c5_deathsLbl = Label(leaderboard, text="Deaths", font=("times", 12), padx=10, pady=5)
-	c5_deathsLbl.grid(row=6, column=4, sticky=W)
+	c1 = L_Card(2)
+	c2 = L_Card(3)
+	c3 = L_Card(4)
+	c4 = L_Card(5)
+	c5 = L_Card(6)
 
 	l_updateBtn = Button(leaderboard, text="Update Stats", font=("times", 12), padx=10, pady=5, command=getLeaderboard, width=46)
 	l_updateBtn.grid(row=7, column=0, columnspan=5)
@@ -469,56 +426,15 @@ def getData():
 
 		DORSCON_color = "#D5D8D7"
 
-	cfmcasesInt.config(text=total)
+	sgCard.update(total, discharged, hospitalised, stable, critical, death, DORSCON_color)
 
-	dischargedInt.config(text=discharged)
 
-	hospitalisedInt.config(text=hospitalised)
-
-	stableInt.config(text=stable)
-
-	criticalInt.config(text=critical)
-
-	deathInt.config(text=death)
-
-	DORSCONLbl.config(background=DORSCON_color)
 
 
 titleLbl = Label(main, text="SG COVID-19 Statistics", font=titleFont, padx=10, pady=10)
 titleLbl.grid(row=0, column=0, columnspan=2)
 
-cfmcasesLbl = Label(main, text="Confirmed Cases:", font=mainFont, padx=10, pady=5)
-cfmcasesLbl.grid(row=1, column=0, sticky=W)
-cfmcasesInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-cfmcasesInt.grid(row=1, column=1, sticky=W)
-
-dischargedLbl = Label(main, text="Discharged:", font=mainFont, padx=10, pady=5)
-dischargedLbl.grid(row=2, column=0, sticky=W)
-dischargedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-dischargedInt.grid(row=2, column=1, sticky=W)
-
-hospitalisedLbl = Label(main, text="Hospitalised:", font=mainFont, padx=10, pady=5)
-hospitalisedLbl.grid(row=3, column=0, sticky=W)
-hospitalisedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-hospitalisedInt.grid(row=3, column=1, sticky=W)
-
-stableLbl = Label(main, text="Stable Cases:", font=mainFont, padx=10, pady=5)
-stableLbl.grid(row=4, column=0, sticky=W)
-stableInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-stableInt.grid(row=4, column=1, sticky=W)
-
-criticalLbl = Label(main, text="Critical Cases:", font=mainFont, padx=10, pady=5)
-criticalLbl.grid(row=5, column=0, sticky=W)
-criticalInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-criticalInt.grid(row=5, column=1, sticky=W)
-
-deathLbl = Label(main, text="Deaths:", font=mainFont, padx=10, pady=5)
-deathLbl.grid(row=6, column=0, sticky=W)
-deathInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-deathInt.grid(row=6, column=1, sticky=W)
-
-DORSCONLbl = Label(main, text="DORSCON", font=mainFont, padx=10, pady=5, width=45)
-DORSCONLbl.grid(row=7, column=0, columnspan=2)
+sgCard = SG_Card()
 
 updateBtn = Button(main, text="Update Stats", font=mainFont, padx=10, pady=5, command=getData, width=45)
 updateBtn.grid(row=8, column=0, columnspan=2)
