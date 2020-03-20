@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.301"
+version = "v2.401"
 
 latest = version
 
@@ -59,13 +59,22 @@ class SG_Card:
 
 	def update(self, d1, d2, d3, d4, d5, d6, d7):
 
-		self.cfmcasesInt.config(text=f"{int(d1):,}")
-		self.dischargedInt.config(text=f"{int(d2):,}")
-		self.hospitalisedInt.config(text=f"{int(d3):,}")
-		self.stableInt.config(text=f"{int(d4):,}")
-		self.criticalInt.config(text=f"{int(d5):,}")
-		self.deathInt.config(text=f"{int(d6):,}")
-		self.DORSCONLbl.config(background=d7)
+		try:
+			self.cfmcasesInt.config(text=f"{int(d1):,}")
+			self.dischargedInt.config(text=f"{int(d2):,}")
+			self.hospitalisedInt.config(text=f"{int(d3):,}")
+			self.stableInt.config(text=f"{int(d4):,}")
+			self.criticalInt.config(text=f"{int(d5):,}")
+			self.deathInt.config(text=f"{int(d6):,}")
+			self.DORSCONLbl.config(background=d7)
+		except:
+			self.cfmcasesInt.config(text=f"{d1}")
+			self.dischargedInt.config(text=f"{d2}")
+			self.hospitalisedInt.config(text=f"{d3}")
+			self.stableInt.config(text=f"{d4}")
+			self.criticalInt.config(text=f"{d5}")
+			self.deathInt.config(text=f"{d6}")
+			self.DORSCONLbl.config(background=d7)
 
 class G_Card:
 
@@ -108,13 +117,22 @@ class G_Card:
 
 	def update(self, d1, d2, d3, d4, d5, d6, d7):
 
-		self.cfmcasesInt.config(text=f"{int(d1):,}")
-		self.dischargedInt.config(text=f"{int(d2):,}")
-		self.hospitalisedInt.config(text=f"{int(d3):,}")
-		self.stableInt.config(text=f"{int(d4):,}")
-		self.criticalInt.config(text=f"{int(d5):,}")
-		self.deathInt.config(text=f"{int(d6):,}")
-		self.countriesInt.config(text=f"{d7}/195")
+		try:
+			self.cfmcasesInt.config(text=f"{int(d1):,}")
+			self.dischargedInt.config(text=f"{int(d2):,}")
+			self.hospitalisedInt.config(text=f"{int(d3):,}")
+			self.stableInt.config(text=f"{int(d4):,}")
+			self.criticalInt.config(text=f"{int(d5):,}")
+			self.deathInt.config(text=f"{int(d6):,}")
+			self.countriesInt.config(text=f"{d7}/195")
+		except:
+			self.cfmcasesInt.config(text=f"{d1}")
+			self.dischargedInt.config(text=f"{d2}")
+			self.hospitalisedInt.config(text=f"{d3}")
+			self.stableInt.config(text=f"{d4}")
+			self.criticalInt.config(text=f"{d5}")
+			self.deathInt.config(text=f"{d6}")
+			self.countriesInt.config(text=f"{d7}/195")
 
 class L_Card:
 
@@ -145,7 +163,7 @@ class L_Card:
 		self.deathsLbl.config(text=f"{int(dataset[index][4]):,}")
 
 def help_info_popup():
-	messagebox.showinfo("Help/Info", "This Statistics app was made by @NJ889.\n\nIn this app, you can see:\n- SG COVID19 STATS\n- Global COVID19 STATS\n- Top 5 Countries affected by COVID19\n\nIn the case where the stats shown are \"N/A\" or \"0\", it is either that the website source does not exist anymore (possibly due to its irrelevancy in the future) or the source code of the websites has been changed and require new code.\n\nIn this event, you may contact me at \"ncov19.gspread@gmail.com\" to fix the problem or evaluate the issue.\n\n\nNicholas Johansan © 2020")
+	messagebox.showinfo("Help/Info", "This Statistics app was made by @NJ889.\n\nIn this app, you can see:\n- SG COVID19 STATS\n- Global COVID19 STATS\n- Top 5 Countries affected by COVID19\n\nIn the case where the stats shown are \"N/A\" or \"0\", it is either that the website source does not exist anymore (possibly due to its irrelevancy in the future) or the source code of the websites has been changed and require new code.\n\nIf this problem occurs in global stats including the leaderboard, just try clicking 'Update Stats' at least 2-5 times before contacting me as it most likely has something to do with server response.\n\nIn this event, you may contact me at \"ncov19.gspread@gmail.com\" to fix the problem or evaluate the issue.\n\n\nNicholas Johansan © 2020")
 
 def l_close():
 	global leaderboard_running
@@ -272,8 +290,8 @@ def getLeaderboard():
 		top5tags = []
 		DORSCON_color = ""
 
-		for i in range(2, 7):
-			temptags.append(soup.findAll("div", {"class":"container--wrap col"})[0].findAll("tr")[i])
+		for i in range(1, 6):
+			temptags.append(soup.findAll("tbody")[0].findAll("tr")[i])
 
 		try:
 			for tag in temptags:
@@ -374,10 +392,10 @@ def getData():
 			temptags.append(tag)
 
 		##DEATH [2]
-		temptags.append(soup.select("span > strong > span > span")[0])
+		temptags.append(soup.select("span > strong > span > span")[4])
 
 		##DISCHARGED [3] - total [3] + [0] + [2]
-		temptags.append(soup.select("td > strong > span")[1])
+		temptags.append(soup.select("td > strong > span")[3])
 
 		##Integer Stats
 		for tag in temptags:
