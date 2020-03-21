@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.401"
+version = "v2.501"
 
 latest = version
 
@@ -387,12 +387,14 @@ def getData():
 		intdata = []
 		DORSCON_color = ""
 
-		##HOSPITALISED [0] - Critical [1] - Stable [0] - [1]
-		for tag in soup.select('tr > td > font > span > b'):
-			temptags.append(tag)
+		##HOSPITALISED [0] - 
+		temptags.append(soup.select('tr > td > font > span > b')[0])
+
+		##Critical [1] - Stable [0] - [1]
+		temptags.append(soup.select("tr > td > span > span > b")[0])
 
 		##DEATH [2]
-		temptags.append(soup.select("span > strong > span > span")[4])
+		temptags.append(soup.select("span > strong > font")[2])
 
 		##DISCHARGED [3] - total [3] + [0] + [2]
 		temptags.append(soup.select("td > strong > span")[3])
@@ -400,7 +402,7 @@ def getData():
 		##Integer Stats
 		for tag in temptags:
 			try:
-				intdata.append(int("".join((tag.text).split())))
+				intdata.append(int(("".join((tag.text).split())).replace("^", "")))
 			except:
 				pass
 
