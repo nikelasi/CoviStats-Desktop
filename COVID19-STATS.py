@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.601"
+version = "v2.701"
 
 latest = version
 
@@ -397,7 +397,7 @@ def getData():
 		temptags.append(soup.select("span > strong > font")[2])
 
 		##DISCHARGED [3] - total [3] + [0] + [2]
-		temptags.append(soup.select("td > strong > span")[3])
+		temptags.append(soup.select("td > strong > span")[2])
 
 		##Integer Stats
 		for tag in temptags:
