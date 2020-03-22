@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.501"
+version = "v2.601"
 
 latest = version
 
@@ -295,10 +295,10 @@ def getLeaderboard():
 
 		try:
 			for tag in temptags:
-				name = tag.findAll("span")[0].text
-				cases = int(("".join((tag.findAll("span")[1].text).split())).replace(',', ''))
-				deaths = int(("".join((tag.findAll("span")[2].text).split())).replace(',', ''))
-				recovered = int(("".join((tag.findAll("span")[3].text).split())).replace(',', ''))
+				name = (tag.findAll("td", {"class":"text--gray"})[0].text).strip()
+				cases = int(("".join((tag.findAll("td", {"class":"text--green"})[0].text).split())).replace(',', ''))
+				deaths = int(("".join((tag.findAll("td", {"class":"text--red"})[0].text).split())).replace(',', ''))
+				recovered = int(("".join((tag.findAll("td", {"class":"text--blue"})[0].text).split())).replace(',', ''))
 				hospitalised = cases - deaths - recovered
 				top5tags.append([name, cases, hospitalised, recovered, deaths])
 		except:
