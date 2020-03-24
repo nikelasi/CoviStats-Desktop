@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.701"
+version = "v2.801"
 
 latest = version
 
@@ -290,12 +290,12 @@ def getLeaderboard():
 		top5tags = []
 		DORSCON_color = ""
 
-		for i in range(1, 6):
-			temptags.append(soup.findAll("tbody")[0].findAll("tr")[i])
+		for i in range(2, 7):
+			temptags.append(soup.findAll("div", {"id":"container_Global"})[0].findAll("tr")[i])
 
 		try:
 			for tag in temptags:
-				name = (tag.findAll("td", {"class":"text--gray"})[0].text).strip()
+				name = ((tag.findAll("td", {"class":"text--gray"})[0].text).replace("★", "")).strip()
 				cases = int(("".join((tag.findAll("td", {"class":"text--green"})[0].text).split())).replace(',', ''))
 				deaths = int(("".join((tag.findAll("td", {"class":"text--red"})[0].text).split())).replace(',', ''))
 				recovered = int(("".join((tag.findAll("td", {"class":"text--blue"})[0].text).split())).replace(',', ''))
