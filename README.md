@@ -1,6 +1,12 @@
 # COVID-19-Stats-Program-
 COVID-19 SG Stats Program (Web Scraper) made with Python
 
+The icon of the application is found at https://findicons.com/icon/595784/virus_heart.
+This icon is licensed under "Freeware Non-commercial" by IconShock.
+
+The data is scraped from https://www.moh.gov.sg/covid-19 for Singapore Statistics.
+The data is scraped from https://ncov2019.live/ for Global Statistics - Made by Avi Schiffmann
+
 A Software Python GUI made by @NJ889.
 It presents statistics on the COVID19 situation.
 Features:
