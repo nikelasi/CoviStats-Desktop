@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.803"
+version = "v2.805"
 
 latest = version
 
@@ -34,30 +34,35 @@ class SG_Card:
 		self.dischargedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
 		self.dischargedInt.grid(row=2, column=1, sticky=W)
 
+		self.isolatedLbl = Label(main, text="Isolated:", font=mainFont, padx=10, pady=5)
+		self.isolatedLbl.grid(row=3, column=0, sticky=W)
+		self.isolatedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
+		self.isolatedInt.grid(row=3, column=1, sticky=W)
+
 		self.hospitalisedLbl = Label(main, text="Hospitalised:", font=mainFont, padx=10, pady=5)
-		self.hospitalisedLbl.grid(row=3, column=0, sticky=W)
+		self.hospitalisedLbl.grid(row=4, column=0, sticky=W)
 		self.hospitalisedInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-		self.hospitalisedInt.grid(row=3, column=1, sticky=W)
+		self.hospitalisedInt.grid(row=4, column=1, sticky=W)
 
 		self.stableLbl = Label(main, text="Stable Cases:", font=mainFont, padx=10, pady=5)
-		self.stableLbl.grid(row=4, column=0, sticky=W)
+		self.stableLbl.grid(row=5, column=0, sticky=W)
 		self.stableInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-		self.stableInt.grid(row=4, column=1, sticky=W)
+		self.stableInt.grid(row=5, column=1, sticky=W)
 
 		self.criticalLbl = Label(main, text="Critical Cases:", font=mainFont, padx=10, pady=5)
-		self.criticalLbl.grid(row=5, column=0, sticky=W)
+		self.criticalLbl.grid(row=6, column=0, sticky=W)
 		self.criticalInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-		self.criticalInt.grid(row=5, column=1, sticky=W)
+		self.criticalInt.grid(row=6, column=1, sticky=W)
 
 		self.deathLbl = Label(main, text="Deaths:", font=mainFont, padx=10, pady=5)
-		self.deathLbl.grid(row=6, column=0, sticky=W)
+		self.deathLbl.grid(row=7, column=0, sticky=W)
 		self.deathInt = Label(main, text="Number", font=mainFont, padx=10, pady=5)
-		self.deathInt.grid(row=6, column=1, sticky=W)
+		self.deathInt.grid(row=7, column=1, sticky=W)
 
 		self.DORSCONLbl = Label(main, text="DORSCON", font=mainFont, padx=10, pady=5, width=45)
-		self.DORSCONLbl.grid(row=7, column=0, columnspan=2)
+		self.DORSCONLbl.grid(row=8, column=0, columnspan=2)
 
-	def update(self, d1, d2, d3, d4, d5, d6, d7):
+	def update(self, d1, d2, d3, d4, d5, d6, d7, d8):
 
 		try:
 			self.cfmcasesInt.config(text=f"{int(d1):,}")
@@ -67,6 +72,7 @@ class SG_Card:
 			self.criticalInt.config(text=f"{int(d5):,}")
 			self.deathInt.config(text=f"{int(d6):,}")
 			self.DORSCONLbl.config(background=d7)
+			self.isolatedInt.config(text=f"{int(d8):,}")
 		except:
 			self.cfmcasesInt.config(text=f"{d1}")
 			self.dischargedInt.config(text=f"{d2}")
@@ -75,6 +81,7 @@ class SG_Card:
 			self.criticalInt.config(text=f"{d5}")
 			self.deathInt.config(text=f"{d6}")
 			self.DORSCONLbl.config(background=d7)
+			self.isolatedInt.config(text=f"{d8}")
 
 class G_Card:
 
@@ -399,6 +406,9 @@ def getData():
 		##DISCHARGED [3] - total [3] + [0] + [2]
 		temptags.append(soup.select('tr > td > strong > span')[2])
 
+		##DISCHARGED TO ISOLATION[4]
+		temptags.append(soup.select("font > span > b")[0])
+
 		##Integer Stats
 		for tag in temptags:
 			try:
@@ -412,13 +422,15 @@ def getData():
 			stable = hospitalised - critical
 			death = intdata[2]
 			discharged = intdata[3]
-			total = hospitalised + discharged + death
+			isolation = intdata[4]
+			total = hospitalised + discharged + death + isolation
 		except:
 			hospitalised = "N/A"
 			stable = "N/A"
 			critical = "N/A"
 			death = "N/A"
 			discharged = "N/A"
+			isolation = "N/A"
 			total = "N/A"
 
 		try:
@@ -442,11 +454,12 @@ def getData():
 		critical = "N/A"
 		death = "N/A"
 		discharged = "N/A"
+		isolation = "N/A"
 		total = "N/A"
 
 		DORSCON_color = "#D5D8D7"
 
-	sgCard.update(total, discharged, hospitalised, stable, critical, death, DORSCON_color)
+	sgCard.update(total, discharged, hospitalised, stable, critical, death, DORSCON_color, isolation)
 
 
 
@@ -457,25 +470,25 @@ titleLbl.grid(row=0, column=0, columnspan=2)
 sgCard = SG_Card()
 
 updateBtn = Button(main, text="Update Stats", font=mainFont, padx=10, pady=5, command=getData, width=45)
-updateBtn.grid(row=8, column=0, columnspan=2)
+updateBtn.grid(row=9, column=0, columnspan=2)
 
 versionLbl = Label(main, text=f"Version: {version}, receiving latest version...", font=mainFont, padx=10, pady=5, width=45)
-versionLbl.grid(row=9, column=0, columnspan=2)
+versionLbl.grid(row=10, column=0, columnspan=2)
 
 updatBtn = Button(main, text="Update App", font=mainFont, padx=10, pady=5, command=getWeb, width=21, state=DISABLED)
-updatBtn.grid(row=10, column=0)
+updatBtn.grid(row=11, column=0)
 
 infoBtn = Button(main, text="Info/Help", font=mainFont, padx=10, pady=5, command=help_info_popup, width=21)
-infoBtn.grid(row=10, column=1)
+infoBtn.grid(row=11, column=1)
 
 globalBtn = Button(main, text="Global Stats", font=mainFont, padx=10, pady=5, command=globalStats, width=21)
-globalBtn.grid(row=11, column=0)
+globalBtn.grid(row=12, column=0)
 
 leaderboardBtn = Button(main, text="Top 5 Countries", font=mainFont, padx=10, pady=5, command=leaderboardStats, width=21)
-leaderboardBtn.grid(row=11, column=1)
+leaderboardBtn.grid(row=12, column=1)
 
 closeBtn = Button(main, text="Close", font=mainFont, padx=10, pady=5, command=close, width=45)
-closeBtn.grid(row=12, column=0, columnspan=2)
+closeBtn.grid(row=13, column=0, columnspan=2)
 
 getData()
 
