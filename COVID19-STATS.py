@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.806"
+version = "v2.807"
 
 latest = version
 
@@ -401,7 +401,7 @@ def getData():
 		temptags.append(soup.select('tr > td > strong > span')[1])
 
 		##DEATH [2]
-		temptags.append(soup.select('tr > td > strong > span')[2])
+		temptags.append(soup.select('font > span > b')[3])
 
 		##DISCHARGED [3] - total [3] + [0] + [2]
 		temptags.append(soup.select('tr > td > strong > span')[0])
