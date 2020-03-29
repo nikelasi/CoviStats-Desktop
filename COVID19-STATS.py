@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.805"
+version = "v2.806"
 
 latest = version
 
@@ -395,19 +395,19 @@ def getData():
 		DORSCON_color = ""
 
 		##HOSPITALISED [0] - 
-		temptags.append(soup.select('tr > td > strong > span')[1])
+		temptags.append(soup.select('font > span > b')[0])
 
 		##Critical [1] - Stable [0] - [1]
-		temptags.append(soup.select('tr > td > strong > span')[3])
+		temptags.append(soup.select('tr > td > strong > span')[1])
 
 		##DEATH [2]
-		temptags.append(soup.select('strong > span > span')[2])
-
-		##DISCHARGED [3] - total [3] + [0] + [2]
 		temptags.append(soup.select('tr > td > strong > span')[2])
 
+		##DISCHARGED [3] - total [3] + [0] + [2]
+		temptags.append(soup.select('tr > td > strong > span')[0])
+
 		##DISCHARGED TO ISOLATION[4]
-		temptags.append(soup.select("font > span > b")[0])
+		temptags.append(soup.select('font > span > b')[1])
 
 		##Integer Stats
 		for tag in temptags:
