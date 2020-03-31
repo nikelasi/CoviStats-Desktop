@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.808"
+version = "v2.809"
 
 latest = version
 
@@ -298,11 +298,11 @@ def getLeaderboard():
 		DORSCON_color = ""
 
 		for i in range(2, 7):
-			temptags.append(soup.findAll("div", {"id":"container_Global"})[0].findAll("tr")[i])
+			temptags.append(soup.findAll("div", {"id":"container_mobile_global"})[0].findAll("tr")[i])
 
 		try:
 			for tag in temptags:
-				name = ((tag.findAll("td", {"class":"text--gray"})[0].text).replace("★", "")).strip()
+				name = ((tag.findAll("td")[1].text).replace("★", "")).strip()
 				cases = int(("".join((tag.findAll("td", {"class":"text--green"})[0].text).split())).replace(',', ''))
 				deaths = int(("".join((tag.findAll("td", {"class":"text--red"})[0].text).split())).replace(',', ''))
 				recovered = int(("".join((tag.findAll("td", {"class":"text--blue"})[0].text).split())).replace(',', ''))
@@ -398,7 +398,7 @@ def getData():
 		temptags.append(soup.select('font > span > b')[0])
 
 		##Critical [1] - Stable [0] - [1]
-		temptags.append(soup.select('tr > td > strong > span')[0])
+		temptags.append(soup.select('tr > td > strong > span')[2])
 
 		##DEATH [2]
 		temptags.append(soup.select('font > span > b')[4])
