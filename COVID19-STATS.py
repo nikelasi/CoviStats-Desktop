@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.810"
+version = "v2.811"
 
 latest = version
 
@@ -131,7 +131,7 @@ class G_Card:
 			self.stableInt.config(text=f"{int(d4):,}")
 			self.criticalInt.config(text=f"{int(d5):,}")
 			self.deathInt.config(text=f"{int(d6):,}")
-			self.countriesInt.config(text=f"{d7}/195")
+			self.countriesInt.config(text=f"{d7}/197")
 		except:
 			self.cfmcasesInt.config(text=f"{d1}")
 			self.dischargedInt.config(text=f"{d2}")
@@ -139,7 +139,7 @@ class G_Card:
 			self.stableInt.config(text=f"{d4}")
 			self.criticalInt.config(text=f"{d5}")
 			self.deathInt.config(text=f"{d6}")
-			self.countriesInt.config(text=f"{d7}/195")
+			self.countriesInt.config(text=f"{d7}/197")
 
 class L_Card:
 
@@ -218,8 +218,6 @@ def getGlobal():
 		temptags.append(soup.findAll("p", {"style": "color: rgb(248, 245, 64); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
 		#RECOVERED [3]
 		temptags.append(soup.findAll("p", {"style": "color: rgb(68, 155, 226); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-		#COUNTRIES [4]
-		temptags.append(soup.findAll("p", {"style": "color: #DFDFEF; font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0].sup)
 
 		##Integer Stats
 		for tag in temptags:
@@ -227,6 +225,8 @@ def getGlobal():
 				intdata.append(int(("".join((tag.text).split())).replace(',', '')))
 			except:
 				pass
+
+		intdata.append(197)
 
 		try:
 			confirmed = intdata[0]
