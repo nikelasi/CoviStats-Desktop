@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.811"
+version = "v2.812"
 
 latest = version
 
@@ -412,7 +412,7 @@ def getData():
 		##Integer Stats
 		for tag in temptags:
 			try:
-				intdata.append(int(("".join((tag.text).split())).replace("^", "")))
+				intdata.append(int((("".join((tag.text).split())).replace("^", "")).replace(",", "")))
 			except:
 				pass
 
