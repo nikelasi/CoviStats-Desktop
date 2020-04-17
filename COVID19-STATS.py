@@ -10,7 +10,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v2.812"
+version = "v2.813"
 
 latest = version
 
@@ -102,44 +102,30 @@ class G_Card:
 		self.hospitalisedInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
 		self.hospitalisedInt.grid(row=3, column=1, sticky=W)
 
-		self.stableLbl = Label(globalstats, text="Stable Cases:", font=("times", 12), padx=10, pady=5)
-		self.stableLbl.grid(row=4, column=0, sticky=W)
-		self.stableInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-		self.stableInt.grid(row=4, column=1, sticky=W)
-
-		self.criticalLbl = Label(globalstats, text="Critical Cases:", font=("times", 12), padx=10, pady=5)
-		self.criticalLbl.grid(row=5, column=0, sticky=W)
-		self.criticalInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-		self.criticalInt.grid(row=5, column=1, sticky=W)
-
 		self.deathLbl = Label(globalstats, text="Deaths:", font=("times", 12), padx=10, pady=5)
-		self.deathLbl.grid(row=6, column=0, sticky=W)
+		self.deathLbl.grid(row=5, column=0, sticky=W)
 		self.deathInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-		self.deathInt.grid(row=6, column=1, sticky=W)
+		self.deathInt.grid(row=5, column=1, sticky=W)
 
 		self.countriesLbl = Label(globalstats, text="Countries:", font=("times", 12), padx=10, pady=5)
-		self.countriesLbl.grid(row=7, column=0, sticky=W)
+		self.countriesLbl.grid(row=6, column=0, sticky=W)
 		self.countriesInt = Label(globalstats, text="Number", font=("times", 12), padx=10, pady=5)
-		self.countriesInt.grid(row=7, column=1, sticky=W)
+		self.countriesInt.grid(row=6, column=1, sticky=W)
 
-	def update(self, d1, d2, d3, d4, d5, d6, d7):
+	def update(self, d1, d2, d3, d4, d5):
 
 		try:
 			self.cfmcasesInt.config(text=f"{int(d1):,}")
 			self.dischargedInt.config(text=f"{int(d2):,}")
 			self.hospitalisedInt.config(text=f"{int(d3):,}")
-			self.stableInt.config(text=f"{int(d4):,}")
-			self.criticalInt.config(text=f"{int(d5):,}")
-			self.deathInt.config(text=f"{int(d6):,}")
-			self.countriesInt.config(text=f"{d7}/197")
+			self.deathInt.config(text=f"{int(d4):,}")
+			self.countriesInt.config(text=f"{d5}/197")
 		except:
 			self.cfmcasesInt.config(text=f"{d1}")
 			self.dischargedInt.config(text=f"{d2}")
 			self.hospitalisedInt.config(text=f"{d3}")
-			self.stableInt.config(text=f"{d4}")
-			self.criticalInt.config(text=f"{d5}")
-			self.deathInt.config(text=f"{d6}")
-			self.countriesInt.config(text=f"{d7}/197")
+			self.deathInt.config(text=f"{d4}")
+			self.countriesInt.config(text=f"{d5}/197")
 
 class L_Card:
 
@@ -214,9 +200,7 @@ def getGlobal():
 		temptags.append(soup.findAll("p", {"style": "color: rgb(101, 221, 155); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
 		#DEATHS [1]
 		temptags.append(soup.findAll("p", {"style": "color: #F65164; font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-		#SERIOUS [2]
-		temptags.append(soup.findAll("p", {"style": "color: rgb(248, 245, 64); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
-		#RECOVERED [3]
+		#RECOVERED [2]
 		temptags.append(soup.findAll("p", {"style": "color: rgb(68, 155, 226); font-weight: bold; text-align: center; border-bottom: 0; font-size: 50px; margin-bottom: 0px;"})[0])
 
 		##Integer Stats
@@ -231,29 +215,23 @@ def getGlobal():
 		try:
 			confirmed = intdata[0]
 			death = intdata[1]
-			critical = intdata[2]
-			recovered = intdata[3]
-			countries = intdata[4]
+			recovered = intdata[2]
+			countries = intdata[3]
 			hospitalised = confirmed - death - recovered
-			stable = hospitalised - critical
 		except:
 			confirmed = "N/A"
 			death = "N/A"
-			critical = "N/A"
 			recovered = "N/A"
 			countries = "N/A"
 			hospitalised = "N/A"
-			stable = "N/A"
 	except:
 		confirmed = "N/A"
 		death = "N/A"
-		critical = "N/A"
 		recovered = "N/A"
 		countries = "N/A"
 		hospitalised = "N/A"
-		stable = "N/A"
 
-	globalCard.update(confirmed, recovered, hospitalised, stable, critical, death, countries)
+	globalCard.update(confirmed, recovered, hospitalised, death, countries)
 
 def globalStats():
 
@@ -276,10 +254,10 @@ def globalStats():
 	globalCard = G_Card()
 
 	g_updateBtn = Button(globalstats, text="Update Stats", font=("times", 12), padx=10, pady=5, command=getGlobal, width=45)
-	g_updateBtn.grid(row=8, column=0, columnspan=2)
+	g_updateBtn.grid(row=7, column=0, columnspan=2)
 
 	g_closeBtn = Button(globalstats, text="Close", font=("times", 12), padx=10, pady=5, command=g_close, width=45)
-	g_closeBtn.grid(row=9, column=0, columnspan=2)
+	g_closeBtn.grid(row=8, column=0, columnspan=2)
 
 	getGlobal()
 
