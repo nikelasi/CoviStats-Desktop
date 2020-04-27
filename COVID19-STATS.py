@@ -11,7 +11,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v3.01"
+version = "v3.02"
 
 latest = version
 
@@ -225,14 +225,14 @@ def getGlobal():
 		result = requests.get("https://coronavirus-19-api.herokuapp.com/countries")
 		listdata = json.loads(result.content.decode())
 
-		cases = listdata[7]['cases']
-		active = listdata[7]['active']
-		deaths = listdata[7]['deaths']
-		recovered = listdata[7]['recovered']
-		critical = listdata[7]['critical']
+		cases = listdata[0]['cases']
+		active = listdata[0]['active']
+		deaths = listdata[0]['deaths']
+		recovered = listdata[0]['recovered']
+		critical = listdata[0]['critical']
 		stable = active - critical
-		newCases = listdata[7]['todayCases']
-		newDeaths = listdata[7]['todayDeaths']
+		newCases = listdata[0]['todayCases']
+		newDeaths = listdata[0]['todayDeaths']
 
 	except:
 		cases = "N/A"
@@ -284,7 +284,7 @@ def getLeaderboard():
 
 		top5tags = []
 
-		for i in range(8,13):
+		for i in range(1,6):
 			name = listdata[i]['country']
 			cases = listdata[i]['cases']
 			active = listdata[i]['active']
