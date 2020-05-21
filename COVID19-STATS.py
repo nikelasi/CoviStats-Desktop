@@ -11,7 +11,7 @@ leaderboard_running = False
 
 updateURL = "https://github.com/NicholasJohansan/COVID-19-Stats-Program-/raw/master/COVID19-STATS.exe"
 
-version = "v3.02"
+version = "v3.10"
 
 latest = version
 
@@ -191,7 +191,7 @@ class L_Card:
 		self.deathsLbl.config(text=f"{int(dataset[index][4]):,}")
 
 def help_info_popup():
-	messagebox.showinfo("Help/Info", "This Statistics app was made by @NJ889.\n\nIn this app, you can see:\n- SG COVID19 STATS\n- Global COVID19 STATS\n- Top 5 Countries affected by COVID19\n\nIn the case where the stats shown are \"N/A\" or \"0\", it is probable that the website source does not exist anymore (possibly due to its irrelevancy in the future).\n\nHowever if you think that shouldn\'t have been an error, you may contact me at \"ncov19.gspread@gmail.com\" to fix the problem or evaluate the issue.\n\nSource Data from \"https://coronavirus-19-api.herokuapp.com/countries\", a stats API.\n\n\nNicholas Johansan © 2020")
+	messagebox.showinfo("Help/Info", "This Statistics app was made by @NJ889.\n\nIn this app, you can see:\n- SG COVID19 STATS\n- Global COVID19 STATS\n- Countries Leaderboard\n\nIn the case where the stats shown are \"N/A\" or \"0\", it is probable that the website source does not exist anymore (possibly due to its irrelevancy in the future).\n\nHowever if you think that shouldn\'t have been an error, you may contact me at \"ncov19.gspread@gmail.com\" to fix the problem or evaluate the issue.\n\nSource Data from \"https://coronavirus-19-api.herokuapp.com/countries\", a stats API.\n\n\nNicholas Johansan © 2020")
 
 def l_close():
 	global leaderboard_running
@@ -284,15 +284,18 @@ def getLeaderboard():
 
 		top5tags = []
 
-		for i in range(1,6):
-			name = listdata[i]['country']
-			cases = listdata[i]['cases']
-			active = listdata[i]['active']
-			deaths = listdata[i]['deaths']
-			recovered = listdata[i]['recovered']
-			critical = listdata[i]['critical']
-			stable = active - critical
-			top5tags.append([name, cases, active, recovered, deaths])
+		for i in range(1,4):
+			try:
+				name = listdata[i]['country']
+				cases = listdata[i]['cases']
+				active = listdata[i]['active']
+				deaths = listdata[i]['deaths']
+				recovered = listdata[i]['recovered']
+				critical = listdata[i]['critical']
+				stable = active - critical
+				top5tags.append([name, cases, active, recovered, deaths])
+			except:
+				top5tags.append(["N/A", 0, 0, 0, 0])
 	except:
 		top5tags = []
 		for i in range(0, 5):
@@ -301,8 +304,6 @@ def getLeaderboard():
 	c1.update(0, top5tags)
 	c2.update(1, top5tags)
 	c3.update(2, top5tags)
-	c4.update(3, top5tags)
-	c5.update(4, top5tags)
 
 def leaderboardStats():
 
@@ -316,10 +317,10 @@ def leaderboardStats():
 		leaderboard_running = True
 
 	leaderboard = Tk()
-	leaderboard.title("Top 5 Countries")
+	leaderboard.title("Leaderboard")
 	leaderboard.geometry("+880+40")
 
-	l_titleLbl = Label(leaderboard, text="Top 5 Countries with COVID-19", font=("times", 20, "bold"), padx=10, pady=10)
+	l_titleLbl = Label(leaderboard, text="Countries Leaderboard", font=("times", 20, "bold"), padx=10, pady=10)
 	l_titleLbl.grid(row=0, column=0, columnspan=5)
 
 	l_header = L_Card(1)
@@ -327,14 +328,12 @@ def leaderboardStats():
 	c1 = L_Card(2)
 	c2 = L_Card(3)
 	c3 = L_Card(4)
-	c4 = L_Card(5)
-	c5 = L_Card(6)
 
 	l_updateBtn = Button(leaderboard, text="Update Stats", font=("times", 12), padx=10, pady=5, command=getLeaderboard, width=46)
-	l_updateBtn.grid(row=7, column=0, columnspan=5)
+	l_updateBtn.grid(row=5, column=0, columnspan=5)
 
 	l_closeBtn = Button(leaderboard, text="Close", font=("times", 12), padx=10, pady=5, command=l_close, width=46)
-	l_closeBtn.grid(row=8, column=0, columnspan=5)
+	l_closeBtn.grid(row=6, column=0, columnspan=5)
 
 	getLeaderboard()
 
@@ -434,7 +433,7 @@ infoBtn.grid(row=13, column=1)
 globalBtn = Button(main, text="Global Stats", font=mainFont, padx=10, pady=5, command=globalStats, width=21)
 globalBtn.grid(row=14, column=0)
 
-leaderboardBtn = Button(main, text="Top 5 Countries", font=mainFont, padx=10, pady=5, command=leaderboardStats, width=21)
+leaderboardBtn = Button(main, text="Countries Leaderboard", font=mainFont, padx=10, pady=5, command=leaderboardStats, width=21)
 leaderboardBtn.grid(row=14, column=1)
 
 closeBtn = Button(main, text="Close", font=mainFont, padx=10, pady=5, command=close, width=45)
