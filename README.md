@@ -12,7 +12,7 @@ It presents statistics on the COVID19 situation.
 Features:
 - Singapore Statistics
 - Global Statistics
-- Top5 Countries Statistics.
+- Top3 Countries Statistics.
 
 More Info/Help can be found under the "Help/Info" button on the program.
 
