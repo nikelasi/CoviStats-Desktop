@@ -2,6 +2,7 @@
 ![](https://raw.githubusercontent.com/NicholasJohansan/CoviStats/master/assets/app/banner.png)
 
 CoviStats is a improved version of its predecessor
+
 It is just a generic app which shows the number of the following in countries:
 - Total cases
 - Active cases
