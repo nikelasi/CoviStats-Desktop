@@ -1,0 +1,70 @@
+
+.countries-stats {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.countries-stats > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.countries-stats > div:first-child > span:first-child {
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+  font-size: 2.5rem;
+  color: var(--pink-red);
+}
+
+.countries-stats > div:first-child > span:last-child {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.countries-stats > div:first-child > span:last-child > img {
+  cursor: pointer;
+}
+
+.countries-stats > div:first-child > span:last-child > img:hover {
+  transform: scale(1.05);
+}
+
+.countries-stats > div:first-child > span:last-child > img:active {
+  transform: scale(0.98);
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-bar > img {
+  height: 40px;
+  width: 40px;
+}
+
+.search-bar > input {
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+  background-color: var(--light-pink-red);
+  padding: 5px 10px;
+  padding-top: 8px;
+  width: 100%;
+  font-size: 1.5rem;
+  border: none;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.search-bar > input:focus {
+  outline: 0;
+}
+
+.search-bar > input::placeholder {
+  color: #ffb4b4;
+}
