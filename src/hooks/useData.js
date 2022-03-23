@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+const REFRESH_INTERVAL = 1000*60
 
 const useData = (fetchFunction) => {
   const [data, setData] = useState(null)
@@ -7,7 +8,7 @@ const useData = (fetchFunction) => {
     setData(await fetchFunction())
     const interval = setInterval(async () => {
       setData(await fetchFunction())
-    }, 1000*10)
+    }, REFRESH_INTERVAL)
     return () => clearInterval(interval)
   }, [])
   useEffect(() => console.log(data), [data])
