@@ -19,10 +19,24 @@ const CountryEntry = ({ country, onClick }) => {
 
 const CountriesStats = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [sort, setSort] = useState('aToZ')
   const countries = useData(api.getCountries)
   let displayedCountries = null
   if (countries !== null) {
     displayedCountries = countries.filter(country => country.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    switch (sort) {
+      case 'aToZ':
+        displayedCountries = displayedCountries.sort(({ name: n1 }, { name: n2 }) => (n1 < n2) ? -1 : (n1 > n2) ? 1 : 0)
+        break;
+      case 'zToA':
+        displayedCountries = displayedCountries.sort(({ name: n1 }, { name: n2 }) => (n1 < n2) ? 1 : (n1 > n2) ? -1 : 0)
+        break;
+      case 'asc':
+        displayedCountries = displayedCountries.sort(({ cases: c1 }, { cases: c2 }) => c1 - c2)
+        break;
+      case 'desc':
+        displayedCountries = displayedCountries.sort(({ cases: c1 }, { cases: c2 }) => c2 - c1)
+    }
   }
   
 
@@ -31,10 +45,10 @@ const CountriesStats = () => {
       <div>
         <span>Countries</span>
         <span>
-          <img src={ascIcon} draggable='false' />
-          <img src={descIcon} draggable='false' />
-          <img src={aToZIcon} draggable='false' />
-          <img src={zToAIcon} draggable='false' />
+          <img src={ascIcon} draggable='false' onClick={() => setSort('asc')} />
+          <img src={descIcon} draggable='false' onClick={() => setSort('desc')} />
+          <img src={aToZIcon} draggable='false' onClick={() => setSort('aToZ')} />
+          <img src={zToAIcon} draggable='false' onClick={() => setSort('zToA')} />
         </span>
       </div>
       <div className="search-bar">
