@@ -35,6 +35,9 @@ const CountriesStats = () => {
         <img src={searchIcon} />
         <input type="text" placeholder='Search' spellCheck='false' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
       </div>
+      <div className="search-result">
+        
+      </div>
     </div>
   )
 }
