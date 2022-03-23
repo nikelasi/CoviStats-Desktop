@@ -96,3 +96,28 @@
   border-radius: 20px;
   border: 3px solid var(--light-pink-red);
 }
+
+.country-entry {
+  flex-shrink: 0;
+  background-color: var(--light-pink-red);
+  padding: 10px;
+  padding-top: 14px;
+  border-radius: 8px;
+  font-family: 'Josefin Sans';
+  font-weight: 350;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+}
+
+.country-entry:hover {
+  transform: scale(1.02);
+  transition: transform 0.15s ease-in-out;
+}
+
+.country-entry:active {
+  opacity: 0.5;
+}

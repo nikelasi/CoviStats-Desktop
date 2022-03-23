@@ -8,10 +8,11 @@ import api from '../api.utils'
 import { useState } from 'react'
 import useData from '../hooks/useData'
 
-const CountryEntry = () => {
+const CountryEntry = ({ country }) => {
   return (
     <div className="country-entry">
-
+      <span>{country.name}</span>
+      <span>{country.cases} cases</span>
     </div>
   )
 }
@@ -36,7 +37,9 @@ const CountriesStats = () => {
         <input type="text" placeholder='Search' spellCheck='false' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
       </div>
       <div className="search-result">
-        
+        { countries === null ? 'loading...' : countries.map(country => 
+          <CountryEntry key={country.name} country={country}/>
+        )}
       </div>
     </div>
   )
