@@ -26,10 +26,10 @@ const CountriesStats = () => {
       <div>
         <span>Countries</span>
         <span>
-          <img src={ascIcon} />
-          <img src={descIcon} />
-          <img src={aToZIcon} />
-          <img src={zToAIcon} />
+          <img src={ascIcon} draggable='false' />
+          <img src={descIcon} draggable='false' />
+          <img src={aToZIcon} draggable='false' />
+          <img src={zToAIcon} draggable='false' />
         </span>
       </div>
       <div className="search-bar">

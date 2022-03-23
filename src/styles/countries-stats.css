@@ -24,6 +24,7 @@
 }
 
 .countries-stats > div:first-child > span:last-child > img {
+  pointer-events: unset;
   cursor: pointer;
 }
 
