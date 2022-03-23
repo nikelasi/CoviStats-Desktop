@@ -1,0 +1,23 @@
+
+.stat-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label > .stat {
+  font-size: 2.5rem;
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+}
+
+.stat-label > .label {
+  font-size: 1.8rem;
+  color: var(--pink-red);
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+}
+
+.stat-label + .stat-label {
+  margin-top: 20px;
+}

@@ -2,15 +2,7 @@ import GlobalIcon from '../assets/icons/global_heading_image.png'
 import api from '../api.utils'
 import '../styles/global-stats.css'
 import { useState, useEffect } from 'react'
-
-const StatLabel = ({ stat, label }) => {
-  return (
-    <div className='stat-label'>
-      <span className='stat'>{ stat }</span>
-      <span className='label'>{ label }</span>
-    </div>
-  )
-}
+import StatLabel from './StatLabel'
 
 const GlobalStats = () => {
   const [stats, setStats] = useState(null)
