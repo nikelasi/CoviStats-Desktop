@@ -5,7 +5,7 @@ import StatLabel from './StatLabel'
 import useData from '../hooks/useData'
 
 const GlobalStats = () => {
-  const stats = useData(api.get_global_data)
+  const stats = useData(api.getGlobalData)
   const DISPLAYED_DATA = ['cases', 'active', 'recovered', 'deaths']
 
   return (

@@ -18,7 +18,7 @@ const CountryEntry = () => {
 
 const CountriesStats = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const countries = useData(api.get_countries)
+  const countries = useData(api.getCountries)
 
   return (
     <div className="countries-stats">
