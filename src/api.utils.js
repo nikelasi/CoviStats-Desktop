@@ -12,7 +12,7 @@ const api = (() => {
   }
 
   const fetchData = async (url) => {
-    const response = await fetch(url)
+    const response = await fetch(url, {headers: {'Pragma': 'No-Cache', 'Cache-Control': 'No-Cache'}})
     return await response.json()
   }
 
