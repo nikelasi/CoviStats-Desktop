@@ -15,7 +15,7 @@ const GlobalStats = () => {
         <img src={GlobalIcon} />
       </div>
       { stats === null ? 'loading...' : DISPLAYED_DATA.map(data => 
-        <StatLabel label={data} stat={stats[data].toLocaleString('en')}/>
+        <StatLabel key={data} label={data} stat={stats[data].toLocaleString('en')}/>
       ) }
     </div>
   )
