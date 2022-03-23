@@ -12,7 +12,7 @@ const CountryEntry = ({ country, onClick }) => {
   return (
     <div className="country-entry" onClick={onClick}>
       <span>{country.name}</span>
-      <span>{country.cases} cases</span>
+      <span>{country.cases.toLocaleString('en')} cases</span>
     </div>
   )
 }
