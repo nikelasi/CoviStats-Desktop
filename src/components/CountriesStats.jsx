@@ -8,9 +8,9 @@ import api from '../api.utils'
 import { useState } from 'react'
 import useData from '../hooks/useData'
 
-const CountryEntry = ({ country }) => {
+const CountryEntry = ({ country, onClick }) => {
   return (
-    <div className="country-entry">
+    <div className="country-entry" onClick={onClick}>
       <span>{country.name}</span>
       <span>{country.cases} cases</span>
     </div>
@@ -20,6 +20,11 @@ const CountryEntry = ({ country }) => {
 const CountriesStats = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const countries = useData(api.getCountries)
+  let displayedCountries = null
+  if (countries !== null) {
+    displayedCountries = countries.filter(country => country.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  }
+  
 
   return (
     <div className="countries-stats">
@@ -37,8 +42,9 @@ const CountriesStats = () => {
         <input type="text" placeholder='Search' spellCheck='false' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
       </div>
       <div className="search-result">
-        { countries === null ? 'loading...' : countries.map(country => 
-          <CountryEntry key={country.name} country={country}/>
+        { countries === null ? 'loading...' :
+          displayedCountries.length === 0 ? 'No countries found' : displayedCountries.map(country => 
+          <CountryEntry key={country.name} country={country} onClick={() => console.log(country.name)}/>
         )}
       </div>
     </div>
