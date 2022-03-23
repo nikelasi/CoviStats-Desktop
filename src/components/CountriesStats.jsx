@@ -17,7 +17,7 @@ const CountryEntry = ({ country, onClick }) => {
   )
 }
 
-const CountriesStats = () => {
+const CountriesStats = ({ displayCountry }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [sort, setSort] = useState('aToZ')
   const countries = useData(api.getCountries)
@@ -58,7 +58,7 @@ const CountriesStats = () => {
       <div className="search-result">
         { countries === null ? 'loading...' :
           displayedCountries.length === 0 ? 'No countries found' : displayedCountries.map(country => 
-          <CountryEntry key={country.name} country={country} onClick={() => console.log(country.name)}/>
+          <CountryEntry key={country.name} country={country} onClick={() => displayCountry(country.name)}/>
         )}
       </div>
     </div>

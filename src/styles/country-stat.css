@@ -1,0 +1,32 @@
+
+.country-stat {
+  background-color: var(--lighter-red);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.country-stat > div:first-child {
+  font-family: 'Josefin Sans';
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--pink-red);
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.country-stat > div:first-child img {
+  pointer-events: unset;
+  cursor: pointer;
+}
+
+.country-stat > div:first-child img:hover {
+  transform: scale(1.05);
+}
+
+.country-stat > div:first-child img:active {
+  transform: scale(0.98);
+}
