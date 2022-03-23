@@ -3,20 +3,11 @@ import api from '../api.utils'
 import '../styles/global-stats.css'
 import { useState, useEffect } from 'react'
 import StatLabel from './StatLabel'
+import useData from '../hooks/useData'
 
 const GlobalStats = () => {
-  const [stats, setStats] = useState(null)
+  const stats = useData(api.get_global_data)
   const DISPLAYED_DATA = ['cases', 'active', 'recovered', 'deaths']
-
-  useEffect(async () => {
-    setStats(await api.get_global_data())
-    const interval = setInterval(async () => {
-      setStats(await api.get_global_data())
-    }, 1000*10)
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => console.log(stats), [stats])
 
   return (
     <div className="global-stats">

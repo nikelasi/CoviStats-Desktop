@@ -6,6 +6,7 @@ import searchIcon from '../assets/icons/searchbar_icon.png'
 import '../styles/countries-stats.css'
 import api from '../api.utils'
 import { useState, useEffect} from 'react'
+import useData from '../hooks/useData'
 
 const CountryEntry = () => {
   return (
@@ -17,17 +18,7 @@ const CountryEntry = () => {
 
 const CountriesStats = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [countries, setCountries] = useState(null)
-
-  useEffect(async () => {
-    setCountries(await api.get_countries())
-    const interval = setInterval(async () => {
-      setCountries(await api.get_countries())
-    }, 1000*10)
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => console.log(countries), [countries])
+  const countries = useData(api.get_countries)
 
   return (
     <div className="countries-stats">
