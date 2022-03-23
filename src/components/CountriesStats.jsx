@@ -4,7 +4,8 @@ import ascIcon from '../assets/filter_buttons/ascending_cases_filter_icon.png'
 import descIcon from '../assets/filter_buttons/descending_cases_filter_icon.png'
 import searchIcon from '../assets/icons/searchbar_icon.png'
 import '../styles/countries-stats.css'
-import { useState } from 'react'
+import api from '../api.utils'
+import { useState, useEffect} from 'react'
 
 const CountryEntry = () => {
   return (
@@ -16,6 +17,17 @@ const CountryEntry = () => {
 
 const CountriesStats = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [countries, setCountries] = useState(null)
+
+  useEffect(async () => {
+    setCountries(await api.get_countries())
+    const interval = setInterval(async () => {
+      setCountries(await api.get_countries())
+    }, 1000*10)
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => console.log(countries), [countries])
 
   return (
     <div className="countries-stats">
