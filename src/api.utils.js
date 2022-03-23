@@ -4,6 +4,13 @@ const api = (() => {
   const GLOBAL_URL = BASE_URL + 'all'
   const COUNTRIES_URL = BASE_URL + 'countries'
 
+  const countryMaker = (data) => {
+    return {
+      name: data.country,
+      cases: data.cases
+    }
+  }
+
   const fetch_data = async (url) => {
     const response = await fetch(url)
     return await response.json()
@@ -22,9 +29,15 @@ const api = (() => {
     return await fetch_data(url)
   }
   
+  const get_countries = async () => {
+    const countries = await get_countries_data()
+    return countries.map(data => countryMaker(data))
+  }
+  
   return {
     get_global_data,
     get_countries_data,
+    get_countries,
     get_country_data
   }
 })()
