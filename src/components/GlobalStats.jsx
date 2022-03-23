@@ -1,7 +1,6 @@
 import GlobalIcon from '../assets/icons/global_heading_image.png'
 import api from '../api.utils'
 import '../styles/global-stats.css'
-import { useState, useEffect } from 'react'
 import StatLabel from './StatLabel'
 import useData from '../hooks/useData'
 

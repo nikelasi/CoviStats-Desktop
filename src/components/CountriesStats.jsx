@@ -5,7 +5,7 @@ import descIcon from '../assets/filter_buttons/descending_cases_filter_icon.png'
 import searchIcon from '../assets/icons/searchbar_icon.png'
 import '../styles/countries-stats.css'
 import api from '../api.utils'
-import { useState, useEffect} from 'react'
+import { useState } from 'react'
 import useData from '../hooks/useData'
 
 const CountryEntry = () => {
