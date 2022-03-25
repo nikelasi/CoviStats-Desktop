@@ -11,7 +11,7 @@ const useData = (fetchFunction) => {
     }, REFRESH_INTERVAL)
     return () => clearInterval(interval)
   }, [])
-  useEffect(() => console.log(data), [data])
+  // useEffect(() => console.log(data), [data])
 
   return data
 }
