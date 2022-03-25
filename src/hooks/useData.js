@@ -4,11 +4,10 @@ const REFRESH_INTERVAL = 1000*60
 const useData = (fetchFunction) => {
   const [data, setData] = useState(null)
 
-  useEffect(async () => {
-    setData(await fetchFunction())
-    const interval = setInterval(async () => {
-      setData(await fetchFunction())
-    }, REFRESH_INTERVAL)
+  useEffect(() => {
+    const updateData = async () => setData(await fetchFunction())
+    updateData()
+    const interval = setInterval(async () => await updateData(), REFRESH_INTERVAL)
     return () => clearInterval(interval)
   }, [])
   // useEffect(() => console.log(data), [data])
