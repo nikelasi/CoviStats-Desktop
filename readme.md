@@ -1,5 +1,5 @@
 # CoviStats
-![Banner](images/banner.png)
+![Banner](imgs/banner.png)
 
 CoviStats is just a generic app which shows the number of the following in countries:
 - Total cases
@@ -18,7 +18,7 @@ The data is sourced from the [disease.sh API](https://github.com/disease-sh/api)
 
 And all the graphics used are original and made by myself while the font is [Josefin Sans](https://fonts.adobe.com/fonts/josefin-sans)
 ## Usage
-![Screenshot](images/screenshot.png)
+![Screenshot](imgs/screenshot.png)
 
 In the app, you can view the global statistics on the sidebar
 You can also search for countries using the searchbar
