@@ -8,8 +8,7 @@ const Main = () => {
   const [displayedCountry, setDisplayedCountry] = useState(null)
 
   const displayCountry = (country) => {
-    onClose()
-    setTimeout(() => setDisplayedCountry(country), 0) // Make sure the component refreshes with new country
+    setDisplayedCountry(country)
   }
 
   const onClose = () => {

@@ -9,7 +9,7 @@ const useData = (fetchFunction) => {
     updateData()
     const interval = setInterval(async () => await updateData(), REFRESH_INTERVAL)
     return () => clearInterval(interval)
-  }, [])
+  }, [fetchFunction])
   // useEffect(() => console.log(data), [data])
 
   return data
