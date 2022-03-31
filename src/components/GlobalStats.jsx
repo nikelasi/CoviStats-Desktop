@@ -1,4 +1,4 @@
-import GlobalIcon from '../assets/icons/global_heading_image.png'
+import GlobalIcon from '../assets/icons/global_heading_icon.svg'
 import api from '../api.utils'
 import '../styles/global-stats.css'
 import StatLabel from './StatLabel'

@@ -1,4 +1,4 @@
-import closeIcon from '../assets/icons/x_icon.png'
+import closeIcon from '../assets/icons/x_icon.svg'
 import useData from '../hooks/useData'
 import '../styles/country-stat.css'
 import StatLabel from './StatLabel'

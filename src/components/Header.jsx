@@ -1,5 +1,5 @@
 import '../styles/header.css'
-import titlebar_icon from '../assets/icons/titlebar_icon.png'
+import titlebar_icon from '../assets/icons/titlebar_icon.svg'
 import { appWindow } from '@tauri-apps/api/window'
 
 const Header = () => {
