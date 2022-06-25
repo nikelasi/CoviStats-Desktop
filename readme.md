@@ -27,13 +27,13 @@ To close the data on a country, just click the x button next to its name on the 
 
 As for sorting data,
 
-![](src/assets/filter_buttons/a_to_z_alphabetical_filter_icon.png) will sort the countries from a to z alphabetically
+![](src/assets/filter_buttons/a_to_z_alphabetical_filter_icon.svg) will sort the countries from a to z alphabetically
 
-![](src/assets/filter_buttons/z_to_a_alphabetical_filter_icon.png) will sort the countries from z to a alphabetically
+![](src/assets/filter_buttons/z_to_a_alphabetical_filter_icon.svg) will sort the countries from z to a alphabetically
 
-![](src/assets/filter_buttons/ascending_cases_filter_icon.png) will sort countries by their total cases in ascending order (low to high)
+![](src/assets/filter_buttons/ascending_cases_filter_icon.svg) will sort countries by their total cases in ascending order (low to high)
 
-![](src/assets/filter_buttons/descending_cases_filter_icon.png) will sort countries by their total cases in descending order (high to low)
+![](src/assets/filter_buttons/descending_cases_filter_icon.svg) will sort countries by their total cases in descending order (high to low)
 
 ## License [![Unlicense](https://img.shields.io/github/license/NicholasJohansan/EP5)](LICENSE)
 CoviStats is [Unlicense](https://unlicense.org/) Licensed (file [license](license)).
